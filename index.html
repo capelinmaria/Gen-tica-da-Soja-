@@ -3,338 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hub de Estudos - Genética da Soja</title>
+  <title>Genética da Soja (Glycine max) - Caderno de Estudos</title>
   <style>
     :root {
-      --primary: #15803d;
-      --primary-light: #dcfce7;
-      --bg: #f8fafc;
+      --primary-color: #2e7d32;
+      --secondary-color: #81c784;
+      --dark-color: #1b5e20;
+      --light-bg: #f4f8f4;
+      --text-color: #333;
       --card-bg: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --radius: 12px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #c8e6c9;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background-color: var(--primary-color);
       display: flex;
       justify-content: center;
-      padding: 20px;
+      gap: 1.5rem;
+      padding: 0.8rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .app-container {
-      width: 100%;
-      max-width: 480px;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-    }
-
-    .btn-back {
-      background: none;
-      border: none;
-      font-size: 16px;
-      color: var(--primary);
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .title-area h1 {
-      font-size: 18px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .title-area p {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    /* Progress Card */
-    .progress-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .progress-bar-bg {
-      height: 8px;
-      background: var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 80%;
-      background: var(--primary);
-      border-radius: 4px;
-    }
-
-    /* Filters */
-    .filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .filter-chip {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .filter-chip.active {
-      background: var(--primary);
+    nav a {
       color: white;
-      border-color: var(--primary);
-    }
-
-    /* Chapter List */
-    .chapters {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .chapter-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .chapter-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .chapter-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .badge {
-      font-size: 10px;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .badge-done { background: #dcfce7; color: #15803d; }
-    .badge-progress { background: #fef9c3; color: #a16207; }
-    .badge-pending { background: #f1f5f9; color: #475569; }
-
-    .subtitle-list {
-      list-style: none;
-      font-size: 13px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      padding-left: 8px;
-      border-left: 2px solid var(--border);
-    }
-
-    .materials-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .tag-media {
-      font-size: 11px;
-      background: #f1f5f9;
-      padding: 4px 8px;
-      border-radius: 6px;
-      color: var(--text);
       text-decoration: none;
-    }
-
-    /* Notes Block */
-    .notes-card {
-      background: #fffbeb;
-      border: 1px solid #fef3c7;
-      border-radius: var(--radius);
-      padding: 16px;
-    }
-
-    .notes-card h3 {
-      font-size: 14px;
-      color: #b45309;
-      margin-bottom: 6px;
-    }
-
-    .notes-card p {
-      font-size: 13px;
-      color: #78350f;
-      line-height: 1.4;
-    }
-
-    /* Floating Action Button */
-    .btn-add {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: var(--radius);
-      font-size: 14px;
       font-weight: 600;
-      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d1e7dd;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--primary-color);
+    }
+
+    h2 {
+      color: var(--dark-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      color: var(--primary-color);
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .info-box {
+      background-color: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    footer {
       text-align: center;
-      box-shadow: 0 4px 6px -1px rgba(21, 128, 61, 0.2);
+      padding: 1.5rem;
+      background-color: var(--dark-color);
+      color: white;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-    
-    <!-- Top Header -->
-    <header class="header">
-      <button class="btn-back">← Voltar</button>
-      <div class="title-area">
-        <h1>Genética da Soja</h1>
-        <p>Biologia & Agronomia</p>
-      </div>
-      <span style="font-size: 18px;">🔍</span>
-    </header>
+  <header>
+    <h1>Genética da Soja (*Glycine max*)</h1>
+    <p>Caderno de Estudos e Notas sobre Melhoramento Genético e Biotecnologia</p>
+  </header>
 
-    <!-- Progress Tracker -->
-    <section class="progress-card">
-      <div class="progress-header">
-        <span>Progresso do Módulo</span>
-        <span>80%</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill"></div>
+  <nav>
+    <a href="#genoma">Genoma</a>
+    <a href="#caracteristicas">Características</a>
+    <a href="#biotecnologia">Biotecnologia</a>
+    <a href="#melhoramento">Melhoramento</a>
+  </nav>
+
+  <div class="container">
+
+    <section id="genoma">
+      <h2>1. Visão Geral do Genoma</h2>
+      <p>A soja é uma espécie paleopoliploide com genoma diploide duplicado complexo. A compreensão de sua estrutura genômica é fundamental para avanços na produtividade e resistência a estresses.</p>
+      
+      <div class="info-box">
+        <ul>
+          <li><strong>Número de Cromossomos:</strong> $2n = 40$ (tetraploide funcional que se comporta como diploide)</li>
+          <li><strong>Tamanho do Genoma:</strong> Aprox. $1,1$ Gigabases (Gb)</li>
+          <li><strong>Primeiro Sequenciamento:</strong> Publicado em 2010 (cultivar 'Williams 82')</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Media Filter Chips -->
-    <nav class="filters">
-      <button class="filter-chip active">Todos</button>
-      <button class="filter-chip">📄 PDFs</button>
-      <button class="filter-chip">▶️ Vídeos</button>
-      <button class="filter-chip">📷 Lousa</button>
-      <button class="filter-chip">📝 Anotações</button>
-    </nav>
-
-    <!-- Chapters & Subtitles Hub -->
-    <main class="chapters">
+    <section id="caracteristicas">
+      <h2>2. Principais Caracteres de Interesse Agronômico</h2>
+      <p>O foco do estudo genético na soja divide-se entre características qualitativas (poucos genes) e quantitativas (múltiplos genes/QTLs):</p>
       
-      <!-- Chapter 1 -->
-      <article class="chapter-card">
-        <div class="chapter-header">
-          <h2 class="chapter-title">1. Mapeamento Genômico</h2>
-          <span class="badge badge-done">Lido</span>
-        </div>
-        <ul class="subtitle-list">
-          <li>1.1 Estrutura de Cromossomos (2n = 40)</li>
-          <li>1.2 Seleção Assistida por Marcadores</li>
-        </ul>
-        <div class="materials-links">
-          <span class="tag-media">📄 PDF Resumo</span>
-          <span class="tag-media">▶️ Aula YouTube</span>
-        </div>
-      </article>
+      <table>
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>Tipo Genético</th>
+            <th>Objetivo do Estudo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <li>Teor de Óleo e Proteína</li>
+            <li>Quantitativo (QTLs)</li>
+            <li>Aumentar valor nutricional e industrial.</li>
+          </tr>
+          <tr>
+            <li>Resistência a Doenças (ex: Ferrugem)</li>
+            <li>Qualitativo / Quantitativo</li>
+            <li>Mapeamento de genes R (ex: Rpp1 a Rpp6).</li>
+          </tr>
+          <tr>
+            <li>Hábito de Crescimento</li>
+            <li>Qualitativo (Lócus Dt1 e Dt2)</li>
+            <li>Determinado vs. Indeterminado.</li>
+          </tr>
+          <tr>
+            <li>Tolerância ao Estresse Hídrico</li>
+            <li>Quantitativo de Alta Complexidade</li>
+            <li>Identificação de genes envolvidos no sistema radicular.</li>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <!-- Chapter 2 -->
-      <article class="chapter-card">
-        <div class="chapter-header">
-          <h2 class="chapter-title">2. Transgenia: RR vs. Bt</h2>
-          <span class="badge badge-done">Lido</span>
-        </div>
-        <ul class="subtitle-list">
-          <li>2.1 Tolerância ao Glifosato (Soja RR)</li>
-          <li>2.2 Proteína Cry e Resistência a Lagartas (Bt)</li>
-        </ul>
-        <div class="materials-links">
-          <span class="tag-media">📄 Apostila</span>
-          <span class="tag-media">📷 Foto Lousa</span>
-        </div>
-      </article>
+    <section id="biotecnologia">
+      <h2>3. Eventos Biotecnológicos (Transgenia e Edição Genômica)</h2>
+      <p>A soja foi uma das culturas pioneiras na adoção global da biotecnologia.</p>
+      
+      <h3>Principais Tecnologias Transgênicas:</h3>
+      <ul>
+        <li><strong>Tolerância a Herbicidas:</strong> Tecnologia Roundup Ready (RR) expressando o gene <em>cp4-epsps</em>, e gerações subsequentes (Intacta RR2 PRO, Conkesta DS).</li>
+        <li><strong>Resistência a Insetos:</strong> Proteínas <em>Cry</em> (Bt) derivadas de <em>Bacillus thuringiensis</em> para controle de lagartas.</li>
+      </ul>
 
-      <!-- Chapter 3 -->
-      <article class="chapter-card">
-        <div class="chapter-header">
-          <h2 class="chapter-title">3. Edição Gênica (CRISPR)</h2>
-          <span class="badge badge-progress">Lendo</span>
-        </div>
-        <ul class="subtitle-list">
-          <li>3.1 Diferença entre Transgenia e CRISPR</li>
-          <li>3.2 Silenciamento de Genes Indesejados</li>
-        </ul>
-        <div class="materials-links">
-          <span class="tag-media">📄 Artigo Científico</span>
-        </div>
-      </article>
-
-      <!-- Chapter 4 -->
-      <article class="chapter-card">
-        <div class="chapter-header">
-          <h2 class="chapter-title">4. Áreas de Refúgio</h2>
-          <span class="badge badge-pending">Pendente</span>
-        </div>
-        <ul class="subtitle-list">
-          <li>4.1 Prevenção da Seleção Natural de Pragas</li>
-          <li>4.2 Porcentagens Obrigatórias no Campo</li>
-        </ul>
-      </article>
-
-      <!-- Student Notes Block -->
-      <section class="notes-card">
-        <h3>💡 Minhas Anotações</h3>
-        <p>Lembrar para a prova: Transgenia insere DNA exógeno; CRISPR realiza edição precisa no próprio DNA da planta!</p>
-      </section>
-
-    </main>
-
-    <!-- Bottom Primary CTA -->
-    <button class="btn-add">+ Adicionar Novo Capítulo ou Material</button>
-
-  </div>
-
-</body>
-</html>
+      <h3>Novas Fronteiras (CRISPR):</h3>
+      <p>Projetos atuais focam na edição gênica para silenciamento de fatores antinutricionais e alteração no perfil de ácidos graxos (ex
